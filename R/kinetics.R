@@ -50,6 +50,8 @@ ekenstam_by_group <- function(df) {
 #'
 #' @param k rate constants, same unit for all
 #' @param temperature_C temperatures in degrees Celsius
+#' With exactly 3 temperatures the fit has 1 residual degree of freedom, so the 95 % CI uses
+#' t(0.975, 1) = 12.7 and is very wide (expected, not a bug): use more temperatures to tighten it.
 #' @return one-row data.frame: Ea (kJ/mol) with 95 % CI, ln A
 arrhenius_fit <- function(k, temperature_C, level = 0.95) {
   if (length(unique(temperature_C)) < 3) stop("need >= 3 distinct temperatures")
